@@ -1,0 +1,25 @@
+<mvc:View
+    controllerName="demo.controller.ODataUsage"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:custom="custom.controls">
+
+    <VBox class="sapUiSmallMargin">
+        <Title text="AdvancedValueHelp - OData usage" level="H4"/>
+
+        <!-- OData V2/V4 model must be set on view/component with name 'bp' -->
+        <custom:AdvancedValueHelp
+            id="vhBusinessPartner"
+            title="Select Business Partner"
+            keyField="BusinessPartner"
+            descriptionField="OrganizationBPName1"
+            multiSelect="true"
+            modelName="bp"
+            dataPath="/A_BusinessPartner"
+            tableType="Grid"
+            columns="{vhConfig>/bpColumns}"
+            filterFields="{vhConfig>/bpFilters}"
+            selectionChange=".onBusinessPartnerSelection"/>
+    </VBox>
+
+</mvc:View>
