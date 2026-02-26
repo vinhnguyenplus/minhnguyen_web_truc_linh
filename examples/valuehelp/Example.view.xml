@@ -1,0 +1,25 @@
+<mvc:View
+    controllerName="demo.controller.Example"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:custom="custom.controls">
+
+    <VBox class="sapUiSmallMargin">
+        <Title text="AdvancedValueHelp - JSONModel example" level="H4"/>
+
+        <custom:AdvancedValueHelp
+            id="vhCustomer"
+            title="Select Customer"
+            keyField="CustomerID"
+            descriptionField="CustomerName"
+            multiSelect="false"
+            modelName="customers"
+            dataPath="/Customers"
+            columns="{vhConfig>/columns}"
+            filterFields="{vhConfig>/filters}"
+            selectionChange=".onValueHelpSelection"/>
+
+        <Text text="Selected key: {view>/selectedCustomerKey}" class="sapUiSmallMarginTop"/>
+    </VBox>
+
+</mvc:View>
