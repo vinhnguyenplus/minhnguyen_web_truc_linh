@@ -9,28 +9,36 @@ sap.ui.define([
             const oConfigModel = new JSONModel("examples/valuehelp/ValueHelpConfig.json");
             this.getView().setModel(oConfigModel, "vhConfig");
 
-            const oCustomerModel = new JSONModel({
+            this.getView().setModel(new JSONModel({
                 Customers: [
                     { CustomerID: "C-1000", CustomerName: "ABC Retail", Country: "DE", Status: "Active" },
                     { CustomerID: "C-1001", CustomerName: "Sunrise Ltd", Country: "US", Status: "Active" },
                     { CustomerID: "C-1002", CustomerName: "Blue Ocean", Country: "VN", Status: "Inactive" }
                 ]
-            });
-            this.getView().setModel(oCustomerModel, "customers");
+            }), "customers");
 
             this.getView().setModel(new JSONModel({
-                selectedCustomerKey: ""
+                selectedCustomerKey: "",
+                selectedCustomerDisplay: ""
             }), "view");
         },
 
-        onValueHelpSelection: function (oEvent) {
-            const aKeys = oEvent.getParameter("selectedKeys");
-            const aItems = oEvent.getParameter("selectedItems");
+        onOpenCustomerVH: function () {
+            this.byId("vhCustomer").open();
+        },
 
-            this.getView().getModel("view").setProperty("/selectedCustomerKey", aKeys[0] || "");
-            // Enterprise usage: consume selected items payload for dependent fields.
-            // aItems[0] includes full selected object.
-            void aItems;
+        onValueHelpSelection: function (oEvent) {
+            const aKeys = oEvent.getParameter("selectedKeys") || [];
+            const aItems = oEvent.getParameter("selectedItems") || [];
+            const oViewModel = this.getView().getModel("view");
+
+            oViewModel.setProperty("/selectedCustomerKey", aKeys[0] || "");
+
+            if (aItems[0]) {
+                oViewModel.setProperty("/selectedCustomerDisplay", [aItems[0].CustomerID, aItems[0].CustomerName].join(" - "));
+            } else {
+                oViewModel.setProperty("/selectedCustomerDisplay", "");
+            }
         }
     });
 });

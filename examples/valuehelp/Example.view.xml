@@ -2,10 +2,17 @@
     controllerName="demo.controller.Example"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:custom="custom.controls">
+    xmlns:custom="custom.controls"
+    xmlns:core="sap.ui.core">
 
     <VBox class="sapUiSmallMargin">
         <Title text="AdvancedValueHelp - JSONModel example" level="H4"/>
+
+        <Input
+            id="inpCustomer"
+            value="{view>/selectedCustomerDisplay}"
+            showValueHelp="true"
+            valueHelpRequest=".onOpenCustomerVH"/>
 
         <custom:AdvancedValueHelp
             id="vhCustomer"
