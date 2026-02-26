@@ -1,0 +1,22 @@
+{
+  "columns": [
+    { "key": "CustomerID", "label": "Customer ID", "type": "String" },
+    { "key": "CustomerName", "label": "Customer Name", "type": "String" },
+    { "key": "Country", "label": "Country", "type": "String" },
+    { "key": "Status", "label": "Status", "type": "String" }
+  ],
+  "filters": [
+    { "key": "CustomerID", "label": "Customer ID", "type": "Input" },
+    { "key": "Country", "label": "Country", "type": "Input" },
+    {
+      "key": "Status",
+      "label": "Status",
+      "type": "Select",
+      "options": [
+        { "key": "", "text": "All" },
+        { "key": "Active", "text": "Active" },
+        { "key": "Inactive", "text": "Inactive" }
+      ]
+    }
+  ]
+}
